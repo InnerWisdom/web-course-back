@@ -15,10 +15,10 @@ class teamController {
 
     async getTeam(req, res) {
         const cached = await cache.get(`team ${id}`)
+        const id = req.params.id;
         if (cached) {
             return res.json(cached)
         }
-        const id = req.params.id;
         const result = await db.query('SELECT * FROM team WHERE isDeleted = FALSE AND teamID = $1', [id]);
         cache.save(`team ${id}`, result.rows[0])
         res.json(result.rows[0]);
