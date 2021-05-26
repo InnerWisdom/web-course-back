@@ -26,7 +26,7 @@ class playerController {
 
     async getPlayer(req, res) { 
         const cached = await cache.get(`player ${id}`)
-        const id = req.params.id;
+        var id = req.params.id;
         if (cached) {
             return res.json(cached)
         }
